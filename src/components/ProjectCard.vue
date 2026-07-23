@@ -6,29 +6,11 @@ defineProps({ project: { type: Object, required: true } })
   <article class="project-card" :style="{ '--accent': project.accent }">
     <router-link :to="`/projeto/${project.slug}`" class="project-visual" :class="`visual-${project.visual}`">
       <span class="corner-label">{{ project.category }} / {{ project.year }}</span>
+      <span class="project-status">{{ project.status }}</span>
 
-      <div v-if="project.slug === 'timely'" class="product-mock timely-mock">
-        <aside class="mock-sidebar">
-          <div class="mock-logo"><i></i><span>timely</span></div>
-          <nav><b>⌂</b><b>◫</b><b>✓</b><b>◷</b></nav>
-          <div class="mock-avatar">VA</div>
-        </aside>
-        <main class="mock-app-content">
-          <header><div><small>VISÃO GERAL</small><strong>Olá, Victor.</strong></div><span>Semana atual⌄</span></header>
-          <div class="timely-stats">
-            <div><small>HORAS ESTA SEMANA</small><b>32h 40m</b><em>↑ 12%</em></div>
-            <div><small>TAREFAS CONCLUÍDAS</small><b>18 <i>/ 24</i></b><em>75%</em></div>
-          </div>
-          <section class="calendar-card">
-            <div class="calendar-head"><strong>Minha semana</strong><span>‹ &nbsp; 15 — 19 JUL &nbsp; ›</span></div>
-            <div class="calendar-grid">
-              <small></small><small>SEG<br><b>15</b></small><small>TER<br><b>16</b></small><small>QUA<br><b>17</b></small><small>QUI<br><b>18</b></small><small>SEX<br><b>19</b></small>
-              <span>09</span><i class="event event-a">Daily team</i><i></i><i class="event event-b">Deep work</i><i></i><i></i>
-              <span>11</span><i></i><i class="event event-c">Design review</i><i></i><i class="event event-a">Planning</i><i></i>
-              <span>14</span><i class="event event-b">Timely app</i><i></i><i class="event event-c">API sync</i><i></i><i class="event event-b">Focus time</i>
-            </div>
-          </section>
-        </main>
+      <div v-if="project.cover" class="real-project-frame">
+        <img :src="project.cover" :alt="`Interface do projeto ${project.title}`" loading="lazy" />
+        <div class="frame-bar"><i></i><i></i><i></i><span>{{ project.title }} / product preview</span></div>
       </div>
 
       <div v-else-if="project.slug === 'reserva-inteligente'" class="product-mock booking-mock">
