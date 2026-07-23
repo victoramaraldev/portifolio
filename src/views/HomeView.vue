@@ -42,6 +42,6 @@ const store = usePortfolioStore()
       <p>Do banco de dados à interface, gosto de transformar problemas complexos em experiências <em>simples, rápidas e memoráveis.</em></p>
       <router-link to="/sobre" class="text-link">Mais sobre mim <span>↗</span></router-link>
     </section>
-    <footer class="footer page-shell"><div><span>Tem um projeto em mente?</span><a href="mailto:victoramaral951@outlook.com">Vamos conversar.</a></div><div class="footer-meta"><span>© 2026</span><a href="https://www.linkedin.com/in/víctor-amaral" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/Fri5Day" target="_blank" rel="noreferrer">GitHub ↗</a></div></footer>
+    <footer class="footer page-shell"><div><span>Tem um projeto em mente?</span><a href="mailto:victoramaral951@outlook.com">Vamos conversar.</a></div><div class="footer-meta"><span>© 2026</span><a href="https://www.linkedin.com/in/víctor-amaral" target="_blank" rel="noreferrer">LinkedIn ↗</a><a href="https://github.com/victoramaraldev" target="_blank" rel="noreferrer">GitHub ↗</a></div></footer>
   </div>
 </template>
