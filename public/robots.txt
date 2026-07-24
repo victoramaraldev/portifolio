@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://victoramaral.dev.br/sitemap.xml

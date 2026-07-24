@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount, watch, ref } from 'vue'
+import { computed, onBeforeUnmount, watch, watchEffect, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { usePortfolioStore } from '../stores/portfolio'
 
@@ -27,6 +27,12 @@ const statusHint = computed(() => {
   return 'Projeto técnico funcional que evidencia integração e solução de um problema real.'
 })
 
+
+watchEffect(() => {
+  document.title = `${project.value.title} — Victor Amaral`
+  const description = document.querySelector('meta[name="description"]')
+  if (description) description.setAttribute('content', project.value.description)
+})
 const closeImage = () => { selectedImage.value = null }
 const handleKeydown = event => { if (event.key === 'Escape') closeImage() }
 
@@ -76,7 +82,7 @@ onBeforeUnmount(() => {
     <section v-if="project.images?.length" class="project-gallery" :class="{ single: project.images.length === 1 }">
       <figure v-for="image in project.images" :key="image.src">
         <button class="gallery-trigger" type="button" :aria-label="`Ampliar: ${image.alt}`" @click="selectedImage = image">
-          <img :src="image.src" :alt="image.alt" />
+          <img :src="image.thumb || image.src" :alt="image.alt" loading="lazy" />
           <span class="expand-hint"><v-icon icon="mdi-arrow-expand-all" size="18" /> Ampliar</span>
         </button>
         <figcaption>{{ image.caption }}</figcaption>
@@ -97,8 +103,22 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
+    <section class="architecture-section">
+      <div class="architecture-intro">
+        <span class="section-number">02 / ARQUITETURA</span>
+        <h2>Como a solução funciona</h2>
+        <p>{{ project.decision }}</p>
+      </div>
+      <div class="architecture-flow" :aria-label="`Arquitetura do projeto ${project.title}`">
+        <template v-for="(node, index) in project.architecture" :key="node">
+          <div class="architecture-node"><small>0{{ index + 1 }}</small><span>{{ node }}</span></div>
+          <v-icon v-if="index < project.architecture.length - 1" icon="mdi-arrow-right" class="architecture-arrow" aria-hidden="true" />
+        </template>
+      </div>
+    </section>
+
     <section class="feature-section">
-      <div><span class="section-number">02 / ESCOPO</span><h2>Funcionalidades</h2></div>
+      <div><span class="section-number">03 / ESCOPO</span><h2>Funcionalidades</h2></div>
       <ol>
         <li v-for="(feature, index) in project.features" :key="feature.label">
           <span>0{{ index + 1 }}</span><i class="feature-icon"><v-icon :icon="feature.icon" size="24" /></i><b>{{ feature.label }}</b>
@@ -108,6 +128,11 @@ onBeforeUnmount(() => {
 
     <section v-if="project.status.includes('desenvolvimento')" class="development-note">
       <i></i><div><small>TRANSPARÊNCIA</small><p>Este produto ainda está em desenvolvimento. As telas apresentadas são reais, mas uma demonstração pública será disponibilizada somente quando o ambiente estiver pronto e seguro.</p></div>
+    </section>
+
+    <section class="project-contact">
+      <div><span class="section-number">04 / VAMOS CONVERSAR</span><h2>Precisa de uma solução parecida?</h2><p>Posso ajudar a transformar um processo, uma ideia ou uma integração em um produto web completo.</p></div>
+      <a :href="`mailto:victoramaral951@outlook.com?subject=Projeto%20semelhante%20ao%20${encodeURIComponent(project.title)}`">Falar sobre o projeto <span>↗</span></a>
     </section>
 
     <router-link :to="`/projeto/${nextProject.slug}`" class="next-project"><small>PRÓXIMO PROJETO</small><span>{{ nextProject.title }} ↗</span></router-link>

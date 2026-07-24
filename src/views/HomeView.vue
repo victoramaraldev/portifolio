@@ -11,12 +11,13 @@ const store = usePortfolioStore();
       <h1>Construo produtos<br /> digitais de <em>ponta a ponta.</em></h1>
       <div class="hero-footer">
         <p>
-          Desenvolvedor full stack especializado em Vue.js e NestJS. Transformo
-          problemas complexos em produtos claros, rápidos e bem construídos.
+          Desenvolvo sistemas web completos para transformar processos manuais
+          em produtos simples, rápidos e confiáveis — da API à interface.
         </p>
-        <a href="#projetos" class="scroll-cue"
-          ><span>Explorar projetos</span><i>↓</i></a
-        >
+        <div class="hero-actions">
+          <a href="mailto:victoramaral951@outlook.com?subject=Quero%20conversar%20sobre%20um%20projeto" class="hero-contact">Falar sobre um projeto <span>↗</span></a>
+          <a href="#projetos" class="scroll-cue"><span>Explorar projetos</span><i>↓</i></a>
+        </div>
       </div>
       <div class="hero-grid" aria-hidden="true">
         <span v-for="n in 14" :key="n"></span>
