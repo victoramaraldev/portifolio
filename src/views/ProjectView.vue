@@ -73,7 +73,7 @@ onBeforeUnmount(() => {
         <div>
           <small>STATUS</small>
           <v-tooltip :text="statusHint" location="top">
-            <template #activator="{ props }"><span v-bind="props" class="meta-status tooltip-target" tabindex="0">{{ project.status }} <v-icon icon="mdi-information-outline" size="14" /></span></template>
+            <template #activator="{ props }"><span v-bind="props" class="meta-status tooltip-target" tabindex="0">{{ project.status }} <v-icon icon="$information" size="14" /></span></template>
           </v-tooltip>
         </div>
       </div>
@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
       <figure v-for="image in project.images" :key="image.src">
         <button class="gallery-trigger" type="button" :aria-label="`Ampliar: ${image.alt}`" @click="selectedImage = image">
           <img :src="image.thumb || image.src" :alt="image.alt" loading="lazy" />
-          <span class="expand-hint"><v-icon icon="mdi-arrow-expand-all" size="18" /> Ampliar</span>
+          <span class="expand-hint"><v-icon icon="$expand" size="18" /> Ampliar</span>
         </button>
         <figcaption>{{ image.caption }}</figcaption>
       </figure>
@@ -112,7 +112,7 @@ onBeforeUnmount(() => {
       <div class="architecture-flow" :aria-label="`Arquitetura do projeto ${project.title}`">
         <template v-for="(node, index) in project.architecture" :key="node">
           <div class="architecture-node"><small>0{{ index + 1 }}</small><span>{{ node }}</span></div>
-          <v-icon v-if="index < project.architecture.length - 1" icon="mdi-arrow-right" class="architecture-arrow" aria-hidden="true" />
+          <v-icon v-if="index < project.architecture.length - 1" icon="$arrowRight" class="architecture-arrow" aria-hidden="true" />
         </template>
       </div>
     </section>
@@ -141,7 +141,7 @@ onBeforeUnmount(() => {
   <Teleport to="body">
     <Transition name="lightbox">
       <div v-if="selectedImage" class="image-lightbox" role="dialog" aria-modal="true" :aria-label="selectedImage.alt" @click.self="closeImage">
-        <button type="button" class="lightbox-close" aria-label="Fechar imagem ampliada" @click="closeImage"><v-icon icon="mdi-close" size="24" /></button>
+        <button type="button" class="lightbox-close" aria-label="Fechar imagem ampliada" @click="closeImage"><v-icon icon="$close" size="24" /></button>
         <div class="lightbox-content">
           <img :src="selectedImage.src" :alt="selectedImage.alt" />
           <p>{{ selectedImage.caption }}</p>

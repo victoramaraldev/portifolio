@@ -26,10 +26,10 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       decision: 'Organizei a experiência em torno da agenda e dos indicadores mais usados, mantendo o estado compartilhado no Pinia e preparando os fluxos para atualizações em tempo real.',
       architecture: ['Interface Vue 3', 'Estado Pinia', 'API e eventos Socket.io', 'Dados operacionais'],
       features: [
-        { label: 'Dashboard operacional', icon: 'mdi-view-dashboard-outline' },
-        { label: 'Agenda e disponibilidade', icon: 'mdi-calendar-clock-outline' },
-        { label: 'Gestão de clientes e equipe', icon: 'mdi-account-group-outline' },
-        { label: 'Relatórios de desempenho', icon: 'mdi-chart-line' },
+        { label: 'Dashboard operacional', icon: '$dashboard' },
+        { label: 'Agenda e disponibilidade', icon: '$calendarClock' },
+        { label: 'Gestão de clientes e equipe', icon: '$accountGroup' },
+        { label: 'Relatórios de desempenho', icon: '$chartLine' },
       ],
     },
     {
@@ -47,10 +47,10 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       decision: 'Separei a interface da API para permitir evolução independente, com autenticação centralizada e módulos de domínio para veículos, motoristas e relatórios.',
       architecture: ['Interface Vue.js', 'API REST NestJS', 'Regras de frota', 'Persistência de dados'],
       features: [
-        { label: 'Gestão de veículos', icon: 'mdi-truck-outline' },
-        { label: 'Gestão de motoristas', icon: 'mdi-card-account-details-outline' },
-        { label: 'Relatórios operacionais', icon: 'mdi-file-chart-outline' },
-        { label: 'Autenticação e controle de acesso', icon: 'mdi-shield-lock-outline' },
+        { label: 'Gestão de veículos', icon: '$truck' },
+        { label: 'Gestão de motoristas', icon: '$accountCard' },
+        { label: 'Relatórios operacionais', icon: '$fileChart' },
+        { label: 'Autenticação e controle de acesso', icon: '$shieldLock' },
       ],
     },
     {
@@ -67,10 +67,10 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       decision: 'Modelei usuários, salas e reservas como domínios separados e protegi tanto as rotas da interface quanto os endpoints da API com autenticação JWT.',
       architecture: ['Vue 3 e Vuetify', 'API NestJS + JWT', 'Prisma ORM', 'Banco SQLite'],
       features: [
-        { label: 'CRUD de usuários', icon: 'mdi-account-cog-outline' },
-        { label: 'Gestão de salas', icon: 'mdi-door-open' },
-        { label: 'Fluxo de reservas', icon: 'mdi-calendar-check-outline' },
-        { label: 'Autenticação JWT', icon: 'mdi-key-outline' },
+        { label: 'CRUD de usuários', icon: '$accountCog' },
+        { label: 'Gestão de salas', icon: '$doorOpen' },
+        { label: 'Fluxo de reservas', icon: '$calendarCheck' },
+        { label: 'Autenticação JWT', icon: '$key' },
       ],
     },
     {
@@ -88,10 +88,10 @@ export const usePortfolioStore = defineStore('portfolio', () => {
       decision: 'Mantive o acesso ao Firebird exclusivamente no backend privado, expondo ao frontend somente os indicadores necessários e reduzindo o acoplamento com a base legada.',
       architecture: ['Dashboard Vue 3', 'API NestJS privada', 'Consultas e agregações', 'Banco Firebird'],
       features: [
-        { label: 'Indicadores operacionais', icon: 'mdi-gauge' },
-        { label: 'Gráficos exportáveis', icon: 'mdi-chart-bar' },
-        { label: 'API NestJS privada', icon: 'mdi-api' },
-        { label: 'Integração com Firebird', icon: 'mdi-database-sync-outline' },
+        { label: 'Indicadores operacionais', icon: '$gauge' },
+        { label: 'Gráficos exportáveis', icon: '$chartBar' },
+        { label: 'API NestJS privada', icon: '$api' },
+        { label: 'Integração com Firebird', icon: '$databaseSync' },
       ],
     },
   ]
