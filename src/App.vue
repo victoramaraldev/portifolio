@@ -5,6 +5,12 @@ import AppHeader from './components/AppHeader.vue'
 <template>
   <v-app>
     <AppHeader />
-    <v-main><router-view v-slot="{ Component }"><transition name="page" mode="out-in"><component :is="Component" /></transition></router-view></v-main>
+    <v-main>
+      <router-view v-slot="{ Component, route }">
+        <transition name="page">
+          <component :is="Component" :key="route.fullPath" />
+        </transition>
+      </router-view>
+    </v-main>
   </v-app>
 </template>
