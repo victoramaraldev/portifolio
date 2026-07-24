@@ -2074,3 +2074,43 @@ button {
         padding: 22px
     }
 }
+/* Portfolio interaction enhancements */
+.site-header { position: sticky; top: 0; z-index: 50; border-bottom: 1px solid transparent; box-shadow: 0 10px 35px rgba(0,0,0,.08) }
+.project-info p { max-width: 760px; line-height: 1.65 }
+.footer-meta a { position: relative; transition: color .25s }
+.footer-meta a::after { content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 1px; background: var(--lime); transform: scaleX(0); transform-origin: right; transition: transform .3s cubic-bezier(.2,.8,.2,1) }
+.footer-meta a:hover,.footer-meta a:focus-visible { color: var(--lime) }
+.footer-meta a:hover::after,.footer-meta a:focus-visible::after { transform: scaleX(1); transform-origin: left }
+.tooltip-target { cursor: help }
+.meta-stack { display: flex; flex-wrap: wrap; gap: 7px }
+.project-meta .meta-tech { width: fit-content; border: 1px solid var(--line); border-radius: 100px; padding: 6px 9px; font: 9px var(--mono); color: #cbd0ca; transition: border-color .2s,color .2s }
+.project-meta .meta-tech:hover,.project-meta .meta-tech:focus-visible,.project-meta .meta-status:hover,.project-meta .meta-status:focus-visible { border-color: var(--accent); color: var(--accent); outline: none }
+.project-meta .meta-status { width: fit-content; display: inline-flex; align-items: center; gap: 7px; border-bottom: 1px dashed #636a63; padding-bottom: 4px }
+.gallery-trigger { width: 100%; border: 0; padding: 0; background: transparent; color: white; display: block; cursor: zoom-in; position: relative; overflow: hidden }
+.gallery-trigger::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent 60%,rgba(0,0,0,.55)); opacity: 0; transition: opacity .3s }
+.gallery-trigger:hover::after,.gallery-trigger:focus-visible::after { opacity: 1 }
+.gallery-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px }
+.expand-hint { position: absolute; z-index: 2; right: 18px; bottom: 16px; display: flex; align-items: center; gap: 7px; border: 1px solid rgba(255,255,255,.3); border-radius: 100px; background: rgba(11,13,12,.82); backdrop-filter: blur(10px); padding: 8px 12px; font: 8px var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: 0; transform: translateY(8px); transition: .3s }
+.gallery-trigger:hover .expand-hint,.gallery-trigger:focus-visible .expand-hint { opacity: 1; transform: none }
+body.lightbox-open { overflow: hidden }
+.image-lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(4,5,4,.94); backdrop-filter: blur(16px); display: grid; place-items: center; padding: clamp(20px,5vw,76px) }
+.lightbox-content { max-width: min(1500px,94vw); max-height: 88vh; display: flex; flex-direction: column; align-items: center; gap: 14px }
+.lightbox-content img { display: block; max-width: 100%; max-height: calc(88vh - 40px); width: auto; height: auto; object-fit: contain; box-shadow: 0 40px 100px #000 }
+.lightbox-content p { margin: 0; font: 9px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: #aeb4ad }
+.lightbox-close { position: fixed; z-index: 2; top: 24px; right: 24px; width: 46px; height: 46px; display: grid; place-items: center; border: 1px solid #ffffff40; border-radius: 50%; background: #111; color: white; cursor: pointer; transition: .25s }
+.lightbox-close:hover,.lightbox-close:focus-visible { background: var(--lime); color: #111; border-color: var(--lime); transform: rotate(6deg) }
+.lightbox-enter-active,.lightbox-leave-active { transition: opacity .25s }
+.lightbox-enter-active .lightbox-content,.lightbox-leave-active .lightbox-content { transition: transform .3s cubic-bezier(.2,.8,.2,1) }
+.lightbox-enter-from,.lightbox-leave-to { opacity: 0 }
+.lightbox-enter-from .lightbox-content,.lightbox-leave-to .lightbox-content { transform: scale(.97) }
+.feature-section li b { font-weight: 500 }
+.feature-icon { width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; color: var(--accent); font-style: normal; flex: 0 0 auto; transition: .25s }
+.feature-section li:hover .feature-icon { background: var(--accent); border-color: var(--accent); color: #0b0d0c; transform: rotate(-5deg) }
+@media(max-width:800px) {
+  .project-info p { font-size: 13px; line-height: 1.55 }
+  .expand-hint { opacity: 1; transform: none; right: 10px; bottom: 10px }
+  .image-lightbox { padding: 70px 12px 24px }
+  .lightbox-close { top: 14px; right: 14px }
+  .feature-section li { gap: 14px }
+  .feature-icon { width: 40px; height: 40px }
+}

@@ -6,7 +6,7 @@ defineProps({ project: { type: Object, required: true } })
   <article class="project-card" :style="{ '--accent': project.accent }">
     <router-link :to="`/projeto/${project.slug}`" class="project-visual" :class="`visual-${project.visual}`">
       <span class="corner-label">{{ project.category }} / {{ project.year }}</span>
-      <span class="project-status">{{ project.status }}</span>
+      <v-tooltip :text="`Status atual: ${project.status}`" location="top"><template #activator="{ props }"><span v-bind="props" class="project-status tooltip-target" tabindex="0">{{ project.status }}</span></template></v-tooltip>
 
       <div v-if="project.cover" class="real-project-frame">
         <img :src="project.cover" :alt="`Interface do projeto ${project.title}`" loading="lazy" />
@@ -40,7 +40,7 @@ defineProps({ project: { type: Object, required: true } })
     <div class="project-info">
       <span class="project-index">{{ project.index }}</span>
       <div><h3>{{ project.title }}</h3><p>{{ project.summary }}</p></div>
-      <div class="tech-list"><span v-for="item in project.tech" :key="item">{{ item }}</span></div>
+      <div class="tech-list"><v-tooltip v-for="item in project.tech" :key="item" :text="`Tecnologia usada no projeto: ${item}`" location="top"><template #activator="{ props }"><span v-bind="props" class="tooltip-target" tabindex="0">{{ item }}</span></template></v-tooltip></div>
     </div>
   </article>
 </template>

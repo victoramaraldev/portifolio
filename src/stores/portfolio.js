@@ -5,7 +5,7 @@ const linkedin = "https://www.linkedin.com/in/víctor-amaral";
 
 export const usePortfolioStore = defineStore("portfolio", () => {
   const activeFilter = ref("Todos");
-  const filters = ["Todos", "Produto", "Full stack", "Dados"];
+  const filters = ["Todos", "Vue", "NestJS", "TypeScript", "Firebird"];
   const projects = [
     {
       id: 1,
@@ -15,7 +15,7 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       category: "Produto",
       year: "2025",
       status: "Beta / Em desenvolvimento",
-      summary: "Agendamentos, equipe e desempenho em um único fluxo.",
+      summary: "Plataforma de agendamentos que reúne agenda, disponibilidade, clientes, equipe e indicadores para simplificar a rotina de negócios que trabalham com horários.",
       description:
         "Uma plataforma de gestão de agendamentos para organizar clientes, equipe, disponibilidade e indicadores operacionais.",
       tech: ["Vue 3", "TypeScript", "Socket.io"],
@@ -43,10 +43,10 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       result:
         "O beta já reúne dashboard, agenda mensal, disponibilidade, clientes, membros, relatórios e comunicação associada aos agendamentos. O produto continua em evolução antes da abertura de uma demonstração pública.",
       features: [
-        "Dashboard operacional",
-        "Agenda e disponibilidade",
-        "Gestão de clientes e equipe",
-        "Relatórios de desempenho",
+        { label: "Dashboard operacional", icon: "mdi-view-dashboard-outline" },
+        { label: "Agenda e disponibilidade", icon: "mdi-calendar-clock-outline" },
+        { label: "Gestão de clientes e equipe", icon: "mdi-account-group-outline" },
+        { label: "Relatórios de desempenho", icon: "mdi-chart-line" },
       ],
     },
     {
@@ -57,7 +57,7 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       category: "Full stack",
       year: "2026",
       status: "Em desenvolvimento",
-      summary: "Gestão inteligente de frotas, veículos e motoristas.",
+      summary: "Sistema de gestão de frotas que centraliza veículos, motoristas e relatórios operacionais, reduzindo controles dispersos e apoiando decisões mais rápidas.",
       description:
         "Sistema de gestão de frotas pensado para concentrar veículos, motoristas, relatórios e informações operacionais em um só ambiente.",
       tech: ["Vue.js", "NestJS", "API REST"],
@@ -79,10 +79,10 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       result:
         "A base de autenticação e a identidade do produto já estão implementadas. Os próximos passos concentram-se na conclusão dos fluxos operacionais e na preparação do ambiente para publicação.",
       features: [
-        "Gestão de veículos",
-        "Gestão de motoristas",
-        "Relatórios operacionais",
-        "Autenticação e controle de acesso",
+        { label: "Gestão de veículos", icon: "mdi-truck-outline" },
+        { label: "Gestão de motoristas", icon: "mdi-card-account-details-outline" },
+        { label: "Relatórios operacionais", icon: "mdi-file-chart-outline" },
+        { label: "Autenticação e controle de acesso", icon: "mdi-shield-lock-outline" },
       ],
     },
     {
@@ -93,7 +93,7 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       category: "Full stack",
       year: "2025",
       status: "Projeto demonstrativo",
-      summary: "Salas, pessoas e reservas em um só fluxo.",
+      summary: "Aplicação full stack para administrar salas, usuários e reservas com autenticação segura, regras de acesso e uma experiência responsiva para a operação diária.",
       description:
         "Sistema full stack para administrar usuários, salas e reservas com acesso seguro e uma interface responsiva.",
       tech: ["Vue 3", "NestJS", "Prisma"],
@@ -108,10 +108,10 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       result:
         "Front-end tipado com Vue, Pinia, Vuetify e validação, conectado a uma API NestJS com autenticação JWT, Prisma, SQLite e proteção de senhas com bcrypt.",
       features: [
-        "CRUD de usuários",
-        "Gestão de salas",
-        "Fluxo de reservas",
-        "Autenticação JWT",
+        { label: "CRUD de usuários", icon: "mdi-account-cog-outline" },
+        { label: "Gestão de salas", icon: "mdi-door-open" },
+        { label: "Fluxo de reservas", icon: "mdi-calendar-check-outline" },
+        { label: "Autenticação JWT", icon: "mdi-key-outline" },
       ],
     },
     {
@@ -122,7 +122,7 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       category: "Dados",
       year: "2026",
       status: "Projeto técnico",
-      summary: "Indicadores industriais extraídos diretamente do Firebird.",
+      summary: "Dashboard industrial que consulta dados do Firebird por uma API NestJS e transforma o andamento da produção em indicadores e gráficos fáceis de acompanhar.",
       description:
         "Dashboard conectado ao banco Firebird para acompanhar o andamento da produção e transformar dados operacionais em indicadores objetivos.",
       tech: ["Vue 3", "ApexCharts", "Firebird"],
@@ -145,19 +145,22 @@ export const usePortfolioStore = defineStore("portfolio", () => {
       result:
         "Solução desacoplada com frontend Vue, Pinia, Vuetify e ApexCharts. Uma API NestJS privada consulta o Firebird e entrega ao painel os totais e a evolução diária da produção.",
       features: [
-        "Indicadores operacionais",
-        "Gráficos exportáveis",
-        "API NestJS privada",
-        "Integração com Firebird",
+        { label: "Indicadores operacionais", icon: "mdi-gauge" },
+        { label: "Gráficos exportáveis", icon: "mdi-chart-bar" },
+        { label: "API NestJS privada", icon: "mdi-api" },
+        { label: "Integração com Firebird", icon: "mdi-database-sync-outline" },
       ],
     },
   ];
 
-  const filteredProjects = computed(() =>
-    activeFilter.value === "Todos"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter.value),
-  );
+  const filteredProjects = computed(() => {
+    if (activeFilter.value === "Todos") return projects;
+
+    const selected = activeFilter.value.toLowerCase();
+    return projects.filter((project) =>
+      project.tech.some((technology) => technology.toLowerCase().includes(selected)),
+    );
+  });
   const getProject = (slug) =>
     projects.find((project) => project.slug === slug);
 

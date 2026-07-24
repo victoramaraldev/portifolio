@@ -29,7 +29,7 @@ const store = usePortfolioStore();
           <span class="section-number">01</span>
           <h2>Projetos selecionados</h2>
         </div>
-        <div class="filters" role="group" aria-label="Filtrar projetos">
+        <div class="filters" role="group" aria-label="Filtrar projetos por tecnologia">
           <button
             v-for="filter in store.filters"
             :key="filter"
